@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Contact";
+const pageDescription = "Get in touch with Dr Sarah Turner";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main class="py-12">
+
+    <h1 class="font-pixel text-2xl sm:text-3xl mb-8 leading-relaxed hero-title">Contact</h1>
+
+    <p class="text-lg leading-relaxed mb-6">
+      I'm always interested in hearing about research collaborations, consultancy opportunities, and speaking engagements.
+    </p>
+
+    <div class="pixel-divider-thin mb-8"></div>
+
+    <div class="space-y-6">
+      <div class="pixel-card bg-muted p-6">
+        <h2 class="pixel-header font-pixel text-lg sm:text-xl mb-3">Research & Academic</h2>
+        <p class="leading-relaxed">
+          For research collaborations, speaking invitations, or consultancy <a href="mailto:s.turner@ucl.ac.uk">email me here</a>
+        </p>
+      </div>
+
+      <div class="pixel-card bg-muted p-6">
+        <h2 class="pixel-header font-pixel text-lg sm:text-xl mb-3">ADHD Coaching</h2>
+        <p class="leading-relaxed">
+          For coaching enquiries, please visit <a href="https://prismaticminds.co.uk">Prismatic Minds</a>.
+        </p>
+      </div>
+    </div>
+
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-title {
+    background: linear-gradient(90deg, var(--pixel-cyan), var(--pixel-magenta), var(--pixel-blue));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .pixel-card {
+    border-left: 3px solid var(--pixel-blue);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pixel-card:hover {
+    border-left-color: var(--pixel-cyan);
+    box-shadow: 0 0 12px var(--pixel-glow);
+  }
+  a {
+    color: var(--pixel-text);
+    border-bottom: 2px solid var(--pixel-cyan);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  a:hover {
+    background: var(--pixel-cyan);
+    color: var(--bg-main);
+  }
+</style>

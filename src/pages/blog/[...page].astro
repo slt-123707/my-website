@@ -1,0 +1,50 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Pagination from '../../components/Pagination.astro';
+import PostPreview from '../../components/PostPreview.astro';
+import siteConfig from '../../data/site-config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sortItemsByDateDesc } from '../../utils/data-utils';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
+    return paginate(posts, { pageSize: siteConfig.postsPerPage || 4 });
+}
+
+type Props = { page: Page<CollectionEntry<'blog'>> };
+
+const { page } = Astro.props;
+const blog = page.data;
+---
+
+<BaseLayout title="Blog" description="Exploring the gap between technology design and actual use: risks, safety, and how people navigate systems not built for them">
+    <div class="mb-12 sm:mb-16">
+        <h1 class="hero-title mb-4 font-pixel text-2xl leading-tight sm:text-4xl">Blog</h1>
+        <p>
+            Reflections on research, emerging technologies, and everyday practice. Subscribe via <a href="/rss.xml" class="rss-link">RSS</a>.
+        </p>
+    </div>
+    <div class="pixel-divider-thin mb-10 sm:mb-14"></div>
+    {blog.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" />)}
+    <Pagination page={page} class="my-16 sm:my-24" />
+</BaseLayout>
+
+<style>
+    .hero-title {
+        background: linear-gradient(90deg, var(--pixel-cyan), var(--pixel-magenta), var(--pixel-blue));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .rss-link {
+        color: var(--pixel-text);
+        border-bottom: 2px solid var(--pixel-cyan);
+        text-decoration: none;
+        transition: all 0.15s ease;
+    }
+    .rss-link:hover {
+        background: var(--pixel-cyan);
+        color: var(--bg-main);
+    }
+</style>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Beyond Research";
+const pageDescription = "ADHD coaching and governance work";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main class="py-12">
+
+    <h1 class="font-pixel text-2xl sm:text-3xl mb-8 leading-relaxed hero-title">Beyond Research</h1>
+
+    <p class="text-lg leading-relaxed mb-6">
+      Alongside my academic research, I provide ADHD coaching and serve in charity and educational governance roles.
+    </p>
+
+    <div class="pixel-divider-thin mb-8"></div>
+    <h2 class="pixel-header font-pixel text-lg sm:text-xl mb-6">ADHD Coaching</h2>
+
+    <div class="pixel-card bg-muted p-6 mb-6">
+      <p class="mb-4 leading-relaxed">
+        I am a qualified ADHD coach with two areas of focus: supporting early career researchers and PhD students in building sustainable academic careers, and working with women managing late or suspected ADHD diagnosis while balancing complex life demands. Through individual coaching and workshops, I help clients develop executive functioning strategies and systems that work with their brains.
+      </p>
+      <p class="leading-relaxed">
+        Learn more at <a href="https://prismaticminds.co.uk">Prismatic Minds</a>.
+      </p>
+    </div>
+
+    <div class="pixel-divider-thin my-6"></div>
+
+    <h2 class="pixel-header font-pixel text-lg sm:text-xl mb-6">Governance & Volunteering</h2>
+
+    <div class="space-y-6 mb-6">
+      <div class="pixel-card bg-muted p-6">
+        <p class="mb-2 leading-relaxed">
+          <strong>Chair</strong>, <a href="https://www.breastfeedingnetwork.org.uk/">The Breastfeeding Network</a>
+        </p>
+        <p class="opacity-75 leading-relaxed">
+          Chairing the board of a national breastfeeding support charity, overseeing strategy, compliance, and organisational development.
+        </p>
+      </div>
+
+      <div class="pixel-card bg-muted p-6">
+        <p class="mb-2 leading-relaxed">
+          <strong>School Governor</strong>, <a href="https://www.eltham-college.org.uk/">Eltham College Family of Schools</a>
+        </p>
+        <p class="opacity-75 leading-relaxed">
+          Bringing knowledge of strategic technology use with children, safeguarding, special educational needs provision, and governance best practices.
+        </p>
+      </div>
+    </div>
+
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-title {
+    background: linear-gradient(90deg, var(--pixel-cyan), var(--pixel-magenta), var(--pixel-blue));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .pixel-card {
+    border-left: 3px solid var(--pixel-magenta);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pixel-card:hover {
+    border-left-color: var(--pixel-cyan);
+    box-shadow: 0 0 12px var(--pixel-glow);
+  }
+  a {
+    color: var(--pixel-text);
+    border-bottom: 2px solid var(--pixel-cyan);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  a:hover {
+    background: var(--pixel-cyan);
+    color: var(--bg-main);
+  }
+</style>

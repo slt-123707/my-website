@@ -1,0 +1,250 @@
+@import '@fontsource-variable/inter' layer(base);
+@import '@fontsource-variable/newsreader' layer(base);
+@import '@fontsource-variable/newsreader/wght-italic.css' layer(base);
+@import '@fontsource/chakra-petch/400.css' layer(base);
+@import '@fontsource/chakra-petch/600.css' layer(base);
+@import '@fontsource/chakra-petch/700.css' layer(base);
+@import '@fontsource/vt323' layer(base);
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    --text-main: #171717;
+    --bg-main: #f2f1ec;
+    --bg-muted: #eae9e1;
+    --border-main: #171717;
+    /* Cyberpunk pixel accent colors */
+    --pixel-cyan: #00a8a8;
+    --pixel-magenta: #cc00cc;
+    --pixel-blue: #0066cc;
+    --pixel-glow: rgba(0, 168, 168, 0.5);
+    --pixel-text: #006666;
+}
+html.dark {
+    --text-main: #f2f1ec;
+    --bg-main: #0d0d0d;
+    --bg-muted: #1a1a1a;
+    --border-main: #f2f1ec;
+    /* Softer neons for dark mode - better readability */
+    --pixel-cyan: #00e5e5;
+    --pixel-magenta: #e54de5;
+    --pixel-blue: #4da6ff;
+    --pixel-glow: rgba(0, 229, 229, 0.4);
+    --pixel-text: #00e5e5;
+}
+
+/* Cyan */
+/*
+:root {
+    --text-main: #162a2b;
+    --bg-main: #d6e0e2;
+    --bg-muted: #ccd8db;
+    --border-main: #162a2b;
+}
+html.dark {
+    --text-main: #d6e0e2;
+    --bg-main: #162a2b;
+    --bg-muted: #1c3537;
+    --border-main: #d6e0e2;
+}
+*/
+
+/* Green */
+/*
+:root {
+    --text-main: #3a4238;
+    --bg-main: #f3efe6;
+    --bg-muted: #eee9dc;
+    --border-main: #3a4238;
+}
+html.dark {
+    --text-main: #f3efe6;
+    --bg-main: #5e6c5b;
+    --bg-muted: #596756;
+    --border-main: #f3efe6;
+}
+*/
+
+@theme inline {
+    --font-sans: 'Chakra Petch', sans-serif;
+    --font-serif: 'Chakra Petch', sans-serif;
+    --font-pixel: 'Chakra Petch', sans-serif;
+    --font-pixel-body: 'VT323', monospace;
+    --text-color-main: var(--text-main);
+    --background-color-main: var(--bg-main);
+    --background-color-muted: var(--bg-muted);
+    --border-color-main: var(--border-main);
+}
+
+@layer utilities {
+    .prose {
+        --tw-prose-body: var(--text-color-main);
+        --tw-prose-headings: var(--text-color-main);
+        --tw-prose-lead: var(--text-color-main);
+        --tw-prose-links: var(--text-color-main);
+        --tw-prose-bold: var(--text-color-main);
+        --tw-prose-counters: var(--text-color-main);
+        --tw-prose-bullets: var(--text-color-main);
+        --tw-prose-hr: var(--border-color-main);
+        --tw-prose-quotes: var(--text-color-main);
+        --tw-prose-quote-borders: var(--border-color-main);
+        --tw-prose-captions: var(--text-color-main);
+        --tw-prose-kbd: var(--text-color-main);
+        --tw-prose-code: var(--text-color-main);
+        --tw-prose-th-borders: var(--border-color-main);
+        --tw-prose-td-borders: var(--border-color-main);
+    }
+
+    .prose a {
+        @apply underline font-normal decoration-1 underline-offset-2 decoration-dashed hover:decoration-solid;
+    }
+
+    .prose :where(h1, h2, h3, h4, h5, h6) {
+        @apply font-semibold;
+    }
+
+    .prose :where(code, strong) {
+        @apply font-medium;
+    }
+
+    .prose blockquote {
+        @apply font-normal italic border-none pl-0 text-[1.375em] leading-snug sm:text-[1.66667em];
+    }
+
+    /* Pixel fonts */
+    .font-pixel {
+        font-family: 'Chakra Petch', sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+    .font-pixel-body {
+        font-family: 'VT323', monospace;
+    }
+
+    /* Pixel art utilities */
+    .pixel-divider {
+        height: 4px;
+        background: repeating-linear-gradient(
+            90deg,
+            var(--pixel-cyan) 0px,
+            var(--pixel-cyan) 8px,
+            transparent 8px,
+            transparent 12px,
+            var(--pixel-magenta) 12px,
+            var(--pixel-magenta) 20px,
+            transparent 20px,
+            transparent 24px
+        );
+    }
+
+    .pixel-divider-thin {
+        height: 2px;
+        background: repeating-linear-gradient(
+            90deg,
+            var(--pixel-cyan) 0px,
+            var(--pixel-cyan) 4px,
+            transparent 4px,
+            transparent 6px,
+            var(--pixel-magenta) 6px,
+            var(--pixel-magenta) 10px,
+            transparent 10px,
+            transparent 12px
+        );
+    }
+
+    .pixel-glow {
+        box-shadow: 0 0 10px var(--pixel-glow), 0 0 20px var(--pixel-glow);
+    }
+
+    .pixel-border {
+        border: 2px solid var(--pixel-cyan);
+        border-radius: 0;
+    }
+
+    /* Pixel corner brackets - add to parent element */
+    .pixel-corners {
+        position: relative;
+    }
+    .pixel-corners::before,
+    .pixel-corners::after {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-color: var(--pixel-cyan);
+        border-style: solid;
+    }
+    .pixel-corners::before {
+        top: -4px;
+        left: -4px;
+        border-width: 2px 0 0 2px;
+    }
+    .pixel-corners::after {
+        bottom: -4px;
+        right: -4px;
+        border-width: 0 2px 2px 0;
+    }
+
+    /* Pixel section header decoration */
+    .pixel-header {
+        display: inline-block;
+        position: relative;
+        padding-left: 20px;
+    }
+    .pixel-header::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--pixel-cyan);
+        box-shadow: 4px 0 0 var(--pixel-magenta);
+    }
+
+    /* Scanline effect for code blocks */
+    .prose pre {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--pixel-cyan);
+        border-radius: 0;
+    }
+    .prose pre::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 2px,
+            rgba(0, 0, 0, 0.05) 2px,
+            rgba(0, 0, 0, 0.05) 4px
+        );
+        pointer-events: none;
+    }
+    html.dark .prose pre::after {
+        background: repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
+        );
+    }
+
+    /* Pixel-styled links in prose */
+    .prose a {
+        color: var(--pixel-text);
+        text-decoration: none;
+        border-bottom: 2px solid var(--pixel-cyan);
+        transition: all 0.15s ease;
+    }
+    .prose a:hover {
+        background: var(--pixel-cyan);
+        color: var(--bg-main);
+    }
+}

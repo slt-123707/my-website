@@ -1,0 +1,67 @@
+---
+import { marked } from 'marked';
+import type { Hero as HeroProps } from '../types';
+import CustomImage from './CustomImage.astro';
+
+type Props = HeroProps;
+
+const { title, image, text, actions } = Astro.props;
+---
+
+{
+    (title || image?.src || text || (actions && actions.length > 0)) && (
+        <section class="mb-4 flex w-full flex-col gap-3 sm:mb-6 sm:gap-4">
+            {title && <h1 class="hero-title font-pixel text-lg leading-relaxed sm:text-xl sm:leading-relaxed">{title}</h1>}
+            {image?.src && (
+                <figure class="pixel-corners p-2">
+                    <CustomImage
+                        class="w-full"
+                        {...image}
+                        widths={[480, 640, 768, 1024, 1536]}
+                        sizes="(min-width: 832px) 768px, calc(100vw - 32px)"
+                        fetchpriority="high"
+                        loading="eager"
+                    />
+                    {image.caption && <figcaption class="mt-1.5 text-xs sm:text-sm">{image.caption}</figcaption>}
+                </figure>
+            )}
+            {text && <div class="prose sm:prose-lg max-w-none" set:html={marked.parse(text)} />}
+            {actions && actions.length > 0 && (
+    <div class="flex flex-wrap gap-3 mt-6">
+        {actions.map((action) => (
+            <a href={action.href} class="hero-jump-link">
+                {action.text}
+            </a>
+        ))}
+    </div>
+)}
+        </section>
+    )
+}
+
+<style>
+    .hero-title {
+        background: linear-gradient(90deg, var(--pixel-cyan), var(--pixel-magenta), var(--pixel-blue));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    }
+    
+    .hero-jump-link {
+        display: inline-block;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+        color: var(--pixel-text);
+        border: 1px solid var(--pixel-cyan);
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.15s ease;
+    }
+    
+    .hero-jump-link:hover {
+        background: var(--pixel-cyan);
+        color: var(--bg-main);
+        box-shadow: 0 0 8px var(--pixel-glow);
+    }
+</style>

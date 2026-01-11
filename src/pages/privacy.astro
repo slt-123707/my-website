@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Privacy Policy";
+const pageDescription = "Privacy policy for sarahturner.co.uk";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main class="py-12 max-w-3xl">
+    <h1 class="font-pixel text-2xl sm:text-3xl mb-8 leading-relaxed hero-title">Privacy Policy</h1>
+    
+    <p class="text-sm text-gray-600 mb-8">Last updated: January 2026</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">What I collect</h2>
+    <p class="leading-relaxed mb-6">I don't collect any personal data through this website.</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">What my hosting provider collects</h2>
+    <p class="leading-relaxed mb-6">This site is hosted on Netlify, which may collect basic server logs (such as IP addresses and browser information) for security and performance purposes. I don't have access to this data and don't use it for analytics or tracking.</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">Cookies</h2>
+    <p class="leading-relaxed mb-6">This site doesn't use cookies for tracking or analytics.</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">Email</h2>
+    <p class="leading-relaxed mb-6">If you email me, your email is handled by ProtonMail. I store emails as needed to respond to your enquiry and maintain our correspondence.</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">RSS Feed</h2>
+    <p class="leading-relaxed mb-6">The RSS feed (<code>/rss.xml</code>) doesn't collect any data. Your RSS reader fetches updates directly without tracking.</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">Third-party links</h2>
+    <p class="leading-relaxed mb-6">This site links to external websites (Google Scholar, UCL, LinkedIn, etc.). Those sites have their own privacy policies which I don't control.</p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-8">Contact</h2>
+    <p class="leading-relaxed mb-6">Questions about this privacy policy? Email me at hello@sarahturner.co.uk</p>
+
+    <div class="pixel-divider-thin my-8"></div>
+    
+    <p class="text-sm text-gray-600 italic">This is a personal academic website. I'm committed to respecting your privacy and keeping things simple.</p>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-title {
+    background: linear-gradient(90deg, var(--pixel-cyan), var(--pixel-magenta), var(--pixel-blue));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

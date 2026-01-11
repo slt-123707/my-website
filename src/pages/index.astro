@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Button from '../components/Button.astro';
+import Hero from '../components/Hero.astro';
+import PostPreview from '../components/PostPreview.astro';
+import siteConfig from '../data/site-config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { sortItemsByDateDesc } from '../utils/data-utils';
+
+const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
+const featuredPosts = posts.filter(({ data }) => data.isFeatured);
+
+---
+
+<BaseLayout description={siteConfig.description}>
+    <Hero {...siteConfig.hero} />
+        {
+        featuredPosts?.length > 0 && (
+            <div class="mb-8 sm:mb-12">
+                <div class="pixel-divider-thin mb-4 sm:mb-6"></div>
+                <h2 class="pixel-header mb-6 font-pixel text-lg sm:mb-8 sm:text-xl">Writing</h2>
+                {featuredPosts.map((post) => (
+                    <PostPreview post={post} class="mb-6 sm:mb-8" headingLevel="h3" />
+                ))}
+                <div class="mt-6 sm:mt-8">
+                    <Button href="/blog">View All Posts</Button>
+                </div>
+            </div>
+        )
+    }
+</BaseLayout>
